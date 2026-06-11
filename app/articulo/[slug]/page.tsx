@@ -28,12 +28,13 @@ const articulos = [
   },
 ];
 
-export default function ArticuloPage({
+export default async function ArticuloPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const articulo = articulos.find((a) => a.slug === params.slug);
+  const { slug } = await params;
+  const articulo = articulos.find((a) => a.slug === slug);
 
   if (!articulo) {
     return (
