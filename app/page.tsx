@@ -1,9 +1,33 @@
 import Link from "next/link";
+import { client } from "../sanity/lib/client";
 
-export default function Home() {
+type Articulo = {
+  _id: string;
+  titulo: string;
+  slug: { current: string };
+  categoria: string;
+  extracto: string;
+  fechaPublicacion: string;
+};
+
+async function getArticulos(): Promise<Articulo[]> {
+  return client.fetch(`
+    *[_type == "articulo"] | order(fechaPublicacion desc) {
+      _id,
+      titulo,
+      slug,
+      categoria,
+      extracto,
+      fechaPublicacion
+    }
+  `);
+}
+
+export default async function Home() {
+  const articulos = await getArticulos();
+
   return (
     <div>
-      {/* Cabecera hero */}
       <section className="text-center py-10 md:py-16 border-b border-pink-100 mb-12">
         <p className="text-xs uppercase tracking-widest text-pink-400 mb-4">
           Creatividad · Pensamiento crítico · Sin filtros
@@ -17,20 +41,30 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Grid de artículos */}
       <section>
         <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-8">
           Últimos artículos
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <ArticleCard
-            categoria="Política & Cultura"
-            titulo="Política de identidad y uniformidad"
-            extracto="Vivimos rodeados de estéticas pulcras y vidas de catálogo que están diluyendo quiénes somos."
-            fecha="10 Jun 2025"
-            slug="politica-identidad-uniformidad"
-          />
-        </div>
+        {articulos.length === 0 ? (
+          <p className="text-gray-400 text-center py-16">No hay artículos publicados todavía.</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {articulos.map((articulo) => (
+              <ArticleCard
+                key={articulo._id}
+                categoria={articulo.categoria}
+                titulo={articulo.titulo}
+                extracto={articulo.extracto}
+                fecha={new Date(articulo.fechaPublicacion).toLocaleDateString("es-ES", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+                slug={articulo.slug.current}
+              />
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );

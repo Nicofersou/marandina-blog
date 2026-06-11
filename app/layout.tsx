@@ -27,10 +27,12 @@ export default function RootLayout({
               </p>
             </div>
             <nav className="flex flex-wrap justify-center gap-4 text-sm uppercase tracking-widest">
-              <Link href="/" className="hover:text-pink-500 transition-colors">Inicio</Link>
-              <Link href="/moda" className="hover:text-pink-500 transition-colors">Moda</Link>
-              <Link href="/arte" className="hover:text-pink-500 transition-colors">Arte</Link>
-              <Link href="/politica" className="hover:text-pink-500 transition-colors">Política</Link>
+              <nav className="flex flex-wrap justify-center gap-4 text-sm uppercase tracking-widest">
+                <Link href="/" className="hover:text-pink-500 transition-colors">Inicio</Link>
+                <Link href="/categoria/moda" className="hover:text-pink-500 transition-colors">Moda</Link>
+                <Link href="/categoria/arte" className="hover:text-pink-500 transition-colors">Arte</Link>
+                <Link href="/categoria/politica" className="hover:text-pink-500 transition-colors">Política</Link>
+              </nav>
             </nav>
           </div>
         </header>
