@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { client } from "../sanity/lib/client";
+import Image from "next/image";
 
 type Articulo = {
   _id: string;
@@ -28,18 +29,37 @@ export default async function Home() {
 
   return (
     <div>
-      <section className="text-center py-10 md:py-16 border-b border-pink-100 mb-12">
-        <p className="text-xs uppercase tracking-widest text-pink-400 mb-4">
-          Creatividad · Pensamiento crítico · Sin filtros
-        </p>
-        <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-          Moda, arte y política<br />
-          <span style={{ color: "var(--pink-primary)" }}>con opinión propia</span>
-        </h2>
-        <p className="text-gray-500 max-w-xl mx-auto text-base md:text-lg px-4">
-          Un espacio digital donde la creatividad y el pensamiento crítico se encuentran.
-        </p>
-      </section>
+      <section className="py-10 md:py-16 border-b border-pink-100 mb-12">
+  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+    
+    {/* Texto */}
+    <div className="flex-1 text-center md:text-left">
+      <p className="text-xs uppercase tracking-widest text-pink-400 mb-4">
+        Creatividad · Pensamiento crítico · Sin filtros
+      </p>
+      <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+        Moda, arte y política<br />
+        <span style={{ color: "var(--pink-primary)" }}>con opinión propia</span>
+      </h2>
+      <p className="text-gray-500 max-w-xl text-base md:text-lg">
+        Un espacio digital donde la creatividad y el pensamiento crítico se encuentran.
+      </p>
+    </div>
+
+    {/* GIF */}
+    <div className="flex-1 flex justify-center">
+      <Image
+        src="pig.gif"
+        alt="Marandina"
+        width={320}
+        height={320}
+        className="rounded-lg"
+        unoptimized
+/>
+    </div>
+
+  </div>
+</section>
 
       <section>
         <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-8">
