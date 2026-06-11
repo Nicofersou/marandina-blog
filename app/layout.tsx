@@ -32,6 +32,7 @@ export default function RootLayout({
                 <Link href="/categoria/moda" className="hover:text-pink-500 transition-colors">Moda</Link>
                 <Link href="/categoria/arte" className="hover:text-pink-500 transition-colors">Arte</Link>
                 <Link href="/categoria/politica" className="hover:text-pink-500 transition-colors">Política</Link>
+                <Link href="/poemario" className="hover:text-pink-500 transition-colors">Poemario</Link>
               </nav>
             </nav>
           </div>

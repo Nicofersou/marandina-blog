@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { client } from "../sanity/lib/client";
 import Image from "next/image";
+import CarruselPoemas from "./components/CarruselPoemas";
 
 type Articulo = {
   _id: string;
@@ -24,8 +25,20 @@ async function getArticulos(): Promise<Articulo[]> {
   `);
 }
 
+async function getPoemas() {
+  return client.fetch(`
+    *[_type == "poema"] | order(fechaPublicacion desc) {
+      _id,
+      titulo,
+      slug,
+      contenido
+    }
+  `);
+}
+
 export default async function Home() {
   const articulos = await getArticulos();
+  const poemas = await getPoemas();
 
   return (
     <div>
@@ -62,6 +75,7 @@ export default async function Home() {
 </section>
 
       <section>
+        <CarruselPoemas poemas={poemas} />
         <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-8">
           Últimos artículos
         </h3>
