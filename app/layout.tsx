@@ -4,7 +4,39 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Marandina Blogazine",
-  description: "Un espacio digital donde la creatividad y el pensamiento crítico se encuentran.",
+  description: "Un espacio digital donde la creatividad y el pensamiento crítico se encuentran. Moda, arte, maquillaje y pensamiento crítico sin filtros.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+    other: [
+      { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16" },
+      { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32" },
+      { rel: "icon", url: "/android-chrome-192x192.png", sizes: "192x192" },
+      { rel: "icon", url: "/android-chrome-512x512.png", sizes: "512x512" }
+    ],
+  },
+  openGraph: {
+    title: "Marandina Blogazine",
+    description: "Un espacio digital donde la creatividad y el pensamiento crítico se encuentran.",
+    url: "https://marandina-blog.vercel.app",
+    siteName: "Marandina Blogazine",
+    images: [
+      {
+        url: "/fondo_enlace.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Marandina Blogazine",
+      },
+    ],
+    locale: "es_ES",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Marandina Blogazine",
+    description: "Un espacio digital donde la creatividad y el pensamiento crítico se encuentran.",
+    images: ["/fondo_enlace.jpeg"],
+  },
 };
 
 export default function RootLayout({
